@@ -169,17 +169,20 @@ void addPath(Graph& graph, Array<long long>& distances, Array<Vec2> points, Arra
 
 void Main()
 {
+	const String applicationName = U"stsmapgen_forSiv3D";
+	const String version = U"v1.0.0";
 	Scene::SetBackground(Palette::White);
 	Window::SetStyle(WindowStyle::Sizable);
-	Scene::Resize(1920, 1080);
+	Window::SetTitle(U"{} {}"_fmt(applicationName, version));
+	Scene::Resize(1920, 1009);
 	Scene::SetResizeMode(ResizeMode::Keep);
 
 	const Font font{ FontMethod::MSDF, 48, Typeface::Bold };
 	const Font middleFont{ FontMethod::MSDF, 24, Typeface::Bold };
 
 	// 始点と終点
-	const Vec2 startPoint{ 1000, 900 };
-	const Vec2 endPoint{ 1000, 150 };
+	const Vec2 startPoint{ 1100, 850 };
+	const Vec2 endPoint{ 1100, 150 };
 
 	// 始点と終点を結ぶ線分を直径とする円
 	const Vec2 areaCenter = (startPoint + endPoint) / 2;
@@ -342,9 +345,16 @@ void Main()
 			}
 		}
 
-		if (SimpleGUI::Button(U"add Path", Vec2{ 100, 100 }, 100))
+		if (SimpleGUI::Button(U"add Path", Vec2{ 50, 100 }, 100))
 		{
 			addPath(graph, distances, points, paths);
+		}
+
+		if (SimpleGUI::Button(U"reset Path", Vec2{ 170, 100 }, 100))
+		{
+			paths.clear();
+			distances = Array<long long>(points.size(), INF);
+			graph = CreateGraphFromDelaunay(triangles, points, subdiv);
 		}
 
 		SimpleGUI::CheckBox(drawCircle, U"draw Circle", checkBoxPos, 100);
@@ -354,8 +364,8 @@ void Main()
 		SimpleGUI::CheckBox(drawPathPoints, U"draw Path Points", checkBoxPos.movedBy(0, 200), 100);
 		SimpleGUI::CheckBox(drawInGameStyle, U"draw in Game style", checkBoxPos.movedBy(0, 250), 100);
 
-		middleFont(U"@eightgamedev").draw(mapArea.br().movedBy(-300, -70), Palette::Black);
-		middleFont(U"inspired by @yurkth").draw(mapArea.br().movedBy(-300, -40), Palette::Black);
-
+		font(applicationName).draw(50, 20, Palette::Black);
+		middleFont(U"@eightgamedev").draw(mapArea.br().movedBy(-300, -80), Palette::Black);
+		middleFont(U"inspired by @yurkth").draw(mapArea.br().movedBy(-300, -50), Palette::Black);
 	}
 }

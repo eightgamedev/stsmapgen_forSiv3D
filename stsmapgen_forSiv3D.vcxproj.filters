@@ -733,6 +733,7 @@
       <Filter>Resource Files\engine\font\min</Filter>
     </None>
     <None Include=".gitignore" />
+    <None Include="LICENSE" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="App\example\test.mp3">
