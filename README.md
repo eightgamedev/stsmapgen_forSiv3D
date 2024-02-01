@@ -7,12 +7,24 @@ This is a port for use with [OpenSiv3D](https://github.com/Siv3D/OpenSiv3D).
 
 ![demo](https://github.com/eightgamedev/stsmapgen_forSiv3D/assets/47023171/eea6b1f1-455b-49af-8e5b-f4e19010171f)
 
+# Method
+
+1. Set two points as start and end point.
+2. Make a circle with two points as its diameters.
+3. Set points within a circle by Poisson disk sampling.
+4. Find the shortest path using Dijkstra's algorithm.
+5. (permanently) Increase the cost of one edge in the path. 
+6. Repeat steps No.4 to No.5.
+
 # License
 
 stsmapgen_forSiv3D is provided under the MIT License. Please see the LICENCE file for details.
 
-# Libraries
+# Library
 
-stsmapgen_forSiv3D uses the following MIT licensed libraries.
-- [stsmapgen](https://github.com/yurkth/stsmapgen)
+stsmapgen_forSiv3D uses the following MIT licensed library.
 - [OpenSiv3D](https://github.com/Siv3D/OpenSiv3D)
+
+# Reference
+
+- [stsmapgen](https://github.com/yurkth/stsmapgen)
